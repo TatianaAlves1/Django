@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 100%;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container > form{
+            padding: 55px;
+            margin-top: 10px;
+            background-color: aqua;
+        }
+        label{
+            display: block;
+            font-weight: bolder;
+            margin: 5px;
+        }
+        .btn{
+            display: block;
+            width: 110px;
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 10px;
+            background-color: rgb(78, 211, 193);
+            border: none;
+        }
+        .btn:hover{
+            background-color: blue;
+            color: white;
+        }
+        .resultado{
+            color: red;
+            font-size: 20px;
+            text-align: center;
+        }
+        .opr{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   <section class="container">
+        <form action="{% url 'calcular' %}" method="post">
+            {% csrf_token %}
+            <label for="">Valor 1:</label>
+            <input type="number" name="v1">
+            <label for="">Valor 2:</label>
+            <input type="number" name="v2">
+            <label for="">Operação</label>
+            <div class="opr">
+                <input type="radio" name="op" value="+">+
+                <input type="radio" name="op" value="-">-
+                <input type="radio" name="op" value="*">*
+                <input type="radio" name="op" value="/">/
+            </div>
+            <input type="submit" value="Calcular" class="btn">
+        </form>
+   </section>
+   <section>
+       <div class="resultado"> 
+          O resultado total é: {{total}}
+       </div>
+   </section>
+</body>
+</html>
